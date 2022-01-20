@@ -1,0 +1,23 @@
+class Solution {
+public:
+    static int countSetBits(int n){
+        int count=0;
+        while(n){
+            n = n&(n-1);
+            count++;
+        }
+        return count;
+    }
+    
+    static bool compareBitwise(int a, int b){
+        int a1=countSetBits(a);
+        int b1 = countSetBits(b);
+        if(a1==b1) return a<b;
+        else return a1<b1;
+    }
+    
+    vector<int> sortByBits(vector<int>& arr) {
+        sort(arr.begin(),arr.end(),compareBitwise);
+        return arr;
+    }
+};
