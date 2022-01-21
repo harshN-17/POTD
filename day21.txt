@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int minEatingSpeed(vector<int>& piles, int h) {
+        int ans,left=1,right,mid;
+        
+        //finding the max pile and making search space [1,max element]
+        for(auto x:piles) right = max(right,x);
+        
+        
+        //binary search
+        while(left<right){
+            mid = left + (right-left)/2;
+            ans=0;
+            //calculating for the speed taken by koko
+            for(auto x:piles){
+                ans += x/mid;
+                if(x%mid!=0) ans++;
+            }
+            if(ans<=h){
+                right=mid;
+            }
+            else left = mid+1;
+        }
+        return right;
+    }
+};
